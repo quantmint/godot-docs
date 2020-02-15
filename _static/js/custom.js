@@ -41,8 +41,33 @@ function registerOnScrollEvent(mediaQuery) {
   }
 }
 
+// Adds the light/dark theme switcher to the top of the documentation page.
+function addThemeSwitcher() {
+  const switcher = document.createElement('button');
+  switcher.appendChild(document.createTextNode('Toggle docs theme'));
+  // Disable the button's built-in interactivity
+  switcher.type = 'button';
+
+  document.getElementsByClassName('version')[0].parentElement.appendChild(switcher);
+}
+
+// If `enabled` is `true`, enables the documentation's dark theme.
+function setDarkTheme(enabled) {
+  document.body.classList.toggle('dark', enabled);
+}
+
 $(document).ready(() => {
   const mediaQuery = window.matchMedia('only screen and (min-width: 768px)');
   registerOnScrollEvent(mediaQuery);
   mediaQuery.addListener(registerOnScrollEvent);
+
+  // Use matchMedia to check the user preference.
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+  setDarkTheme(prefersDark.matches);
+
+  // Listen for changes to the prefers-color-scheme media query.
+  prefersDark.addListener((mediaQuery) => setDarkTheme(mediaQuery.matches));
+
+  addThemeSwitcher();
 });
