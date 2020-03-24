@@ -31,17 +31,19 @@ Placeholder substitution
 When exporting the game, several placeholders in the HTML page are replaced
 with values depending on the export:
 
-+------------------------------+-----------------------------------------------+
-| Placeholder                  | Substituted by                                |
-+==============================+===============================================+
-| ``$GODOT_BASENAME``          | Basename of exported files without suffixes,  |
-|                              | e.g. ``game`` when exporting ``game.html``    |
-+------------------------------+-----------------------------------------------+
-| ``$GODOT_DEBUG_ENABLED``     | ``true`` if debugging, ``false`` otherwise    |
-+------------------------------+-----------------------------------------------+
-| ``$GODOT_HEAD_INCLUDE``      | Custom string to include just before the end  |
-|                              | of the HTML ``<head>`` element                |
-+------------------------------+-----------------------------------------------+
++------------------------------+-----------------------------------------------------+
+| Placeholder                  | Substituted by                                      |
++==============================+=====================================================+
+| ``$GODOT_BASENAME``          | Basename of exported files without suffixes,        |
+|                              | e.g. ``game`` when exporting ``game.html``          |
++------------------------------+-----------------------------------------------------+
+| ``$GODOT_DEBUG_ENABLED``     | ``true`` if debugging, ``false`` otherwise          |
++------------------------------+-----------------------------------------------------+
+| ``$GODOT_HEAD_INCLUDE``      | Custom string to include just before the end        |
+|                              | of the HTML ``<head>`` element                      |
++------------------------------+-----------------------------------------------------+
+| ``$GODOT_PROJECT_NAME``      | The project name as defined in the Project Settings |
++------------------------------+-----------------------------------------------------+
 
 The HTML file must evaluate the JavaScript file ``$GODOT_BASENAME.js``. This
 file defines a global ``Engine`` object used to start the engine, :ref:`see
@@ -187,10 +189,10 @@ then the ``engine`` instance must be initialized and finally started.
 
 .. js:function:: engine.startGame(execName, mainPack)
 
-    Initializes the engine if not yet initialized, loads the executable, 
+    Initializes the engine if not yet initialized, loads the executable,
     and starts the game with the main pack loaded from the passed URL.
 
-    If the engine isn't loaded yet, the base path of the passed executable name 
+    If the engine isn't loaded yet, the base path of the passed executable name
     will be used to load the engine.
 
     :param string execName:
@@ -352,4 +354,4 @@ Accessing the Emscripten ``Module``
 If you know what you're doing, you can access the runtime environment
 (Emscripten's ``Module``) as ``engine.rtenv``. Check the official Emscripten
 documentation for information on how to use it:
-https://kripken.github.io/emscripten-site/docs/api_reference/module.html
+https://emscripten.org/docs/api_reference/module.html
